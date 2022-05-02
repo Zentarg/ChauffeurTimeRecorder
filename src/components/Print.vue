@@ -145,7 +145,6 @@ export default defineComponent({
 			`;
 
 			this.$refs.iframe;
-			console.log(iframe);
 			this.$refs.iframe.contentWindow?.document.head.appendChild(style);
 			this.$refs.iframe.contentWindow?.document.body.appendChild(
 				this.$refs.print
@@ -154,18 +153,12 @@ export default defineComponent({
 			this.$refs.iframe.contentWindow?.print();
 		},
 	},
-	mounted() {
-		console.log('Mounted Test', this.$refs.print);
-		this.Print();
-	},
 });
 </script>
 
 <style scoped lang="scss">
 .printContainer {
-	width: 21cm;
-	min-height: 29.7cm;
-	background: blue;
+	display: none;
 }
 iframe {
 	width: 0;

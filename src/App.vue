@@ -2,126 +2,64 @@
 import { RouterLink, RouterView } from 'vue-router';
 import HelloWorld from '@/components/HelloWorld.vue';
 import Print from './components/Print.vue';
+import IconTooling from './components/icons/IconTooling.vue';
+import IconCommunity from './components/icons/IconCommunity.vue';
+import IconDocumentation from './components/icons/IconDocumentation.vue';
+import IconCog from './components/icons/IconCog.vue';
+import IconNote from './components/icons/iconNote.vue';
 </script>
 
 <template>
 	<header>
-		<img
-			alt="Vue logo"
-			class="logo"
-			src="@/assets/logo.svg"
-			width="125"
-			height="125"
-		/>
-
-		<div class="wrapper">
-			<HelloWorld msg="You did it!" />
-			<Print />
-			<nav>
-				<RouterLink to="/">Home</RouterLink>
-				<RouterLink to="/about">About</RouterLink>
-				<RouterLink to="/app">App</RouterLink>
-			</nav>
-		</div>
+		<nav>
+			<RouterLink to="/">
+				<IconNote></IconNote>
+			</RouterLink>
+			<RouterLink to="/settings"> <IconCog></IconCog> </RouterLink>
+		</nav>
 	</header>
 
-	<RouterView />
+	<div class="router-view">
+		<RouterView />
+	</div>
 </template>
 
-<style>
+<style lang="scss">
 @import '@/assets/base.scss';
 
 #app {
-	max-width: 1280px;
-	margin: 0 auto;
-	padding: 2rem;
-
-	font-weight: normal;
-}
-
-header {
-	line-height: 1.5;
-	max-height: 100vh;
-}
-
-.logo {
-	display: block;
-	margin: 0 auto 2rem;
-}
-
-a,
-.green {
-	text-decoration: none;
-	color: hsla(160, 100%, 37%, 1);
-	transition: 0.4s;
-}
-
-@media (hover: hover) {
-	a:hover {
-		background-color: hsla(160, 100%, 37%, 0.2);
-	}
-}
-
-nav {
-	width: 100%;
-	font-size: 12px;
-	text-align: center;
-	margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-	color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-	background-color: transparent;
-}
-
-nav a {
-	display: inline-block;
-	padding: 0 1rem;
-	border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-	border: 0;
-}
-
-@media (min-width: 1024px) {
-	body {
-		display: flex;
-		place-items: center;
-	}
-
-	#app {
-		display: grid;
-		grid-template-columns: 1fr 1fr;
-		padding: 0 2rem;
-	}
-
 	header {
-		display: flex;
-		place-items: center;
-		padding-right: calc(var(--section-gap) / 2);
+		position: absolute;
+		width: 75px;
+		height: 100vh;
+
+		nav {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 100%;
+			align-items: center;
+			gap: 3rem;
+			padding: $general-padding;
+
+			a {
+				text-decoration: none;
+				color: var(--color-text);
+				&:hover {
+					color: var(--color-text-hover);
+				}
+				svg {
+					transform: scale(2);
+				}
+			}
+		}
 	}
 
-	header .wrapper {
-		display: flex;
-		place-items: flex-start;
-		flex-wrap: wrap;
-	}
-
-	.logo {
-		margin: 0 2rem 0 0;
-	}
-
-	nav {
-		text-align: left;
-		margin-left: -1rem;
-		font-size: 1rem;
-
-		padding: 1rem 0;
-		margin-top: 1rem;
+	.router-view {
+		position: absolute;
+		left: 75px;
+		height: 100vh;
+		width: calc(100vw - 75px);
 	}
 }
 </style>
