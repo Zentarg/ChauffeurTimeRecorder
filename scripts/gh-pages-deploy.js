@@ -19,7 +19,7 @@ import fs from 'fs';
 		]);
 		console.log('Pushing to gh-pages...');
 		await execa('git', ['push', 'origin', 'HEAD:gh-pages', '--force']);
-		await execa('rmdirr', ['/S', folderName]);
+		await execa('rmdir', ['/S', '/Q', folderName]);
 		await execa('git', ['checkout', '-f', 'master']);
 		await execa('git', ['branch', '-D', 'gh-pages']);
 		console.log('Successfully deployed, check your settings');
