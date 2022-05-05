@@ -1,10 +1,5 @@
 <script setup lang="ts">
 import { RouterLink, RouterView } from 'vue-router';
-import HelloWorld from '@/components/HelloWorld.vue';
-import Print from './components/Print.vue';
-import IconTooling from './components/icons/IconTooling.vue';
-import IconCommunity from './components/icons/IconCommunity.vue';
-import IconDocumentation from './components/icons/IconDocumentation.vue';
 import IconCog from './components/icons/IconCog.vue';
 import IconNote from './components/icons/iconNote.vue';
 </script>
@@ -30,7 +25,7 @@ import IconNote from './components/icons/iconNote.vue';
 #app {
 	header {
 		position: absolute;
-		width: 75px;
+		width: 4rem;
 		height: 100vh;
 
 		nav {
@@ -39,8 +34,8 @@ import IconNote from './components/icons/iconNote.vue';
 			width: 100%;
 			height: 100%;
 			align-items: center;
-			gap: 3rem;
-			padding: $general-padding;
+			gap: 1.5rem;
+			padding: var(--general-padding);
 
 			a {
 				text-decoration: none;
@@ -49,7 +44,8 @@ import IconNote from './components/icons/iconNote.vue';
 					color: var(--color-text-hover);
 				}
 				svg {
-					transform: scale(2);
+					height: 3rem !important;
+					width: 3rem !important;
 				}
 			}
 		}
@@ -57,9 +53,8 @@ import IconNote from './components/icons/iconNote.vue';
 
 	.router-view {
 		position: absolute;
-		left: 75px;
+		left: 4rem;
 		height: 100vh;
-		width: calc(100vw - 75px);
 	}
 }
 </style>
