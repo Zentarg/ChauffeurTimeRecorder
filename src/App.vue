@@ -20,22 +20,36 @@ import IconNote from './components/icons/iconNote.vue';
 </template>
 
 <style lang="scss">
+@use './assets/mixins.scss' as m;
 @import '@/assets/base.scss';
 
 #app {
+	display: flex;
+	flex-direction: column;
+	@include m.tablet {
+		flex-direction: row;
+	}
 	header {
-		position: absolute;
+		position: relative;
 		width: 4rem;
-		height: 100vh;
+		flex: 0 0 4rem;
 
 		nav {
+			position: fixed;
+			padding: var(--general-x-padding);
 			display: flex;
-			flex-direction: column;
-			width: 100%;
-			height: 100%;
+			flex-direction: row;
 			align-items: center;
 			gap: 1.5rem;
-			padding: var(--general-padding);
+			background-color: var(--color-background);
+			width: 100%;
+			z-index: 1;
+
+			@include m.tablet {
+				width: auto;
+				flex-direction: column;
+				padding: var(--general-padding);
+			}
 
 			a {
 				text-decoration: none;
@@ -52,9 +66,8 @@ import IconNote from './components/icons/iconNote.vue';
 	}
 
 	.router-view {
-		position: absolute;
-		left: 4rem;
-		height: 100vh;
+		// position: absolute;
+		// left: 4rem;
 	}
 }
 </style>

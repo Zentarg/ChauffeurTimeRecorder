@@ -19,7 +19,7 @@ export default defineComponent({
 		},
 		pattern: {
 			type: String,
-			default: '*',
+			default: '',
 		},
 	},
 	methods: {
@@ -38,7 +38,9 @@ export default defineComponent({
 			name=""
 			:value="modelValue"
 			@input="InputChanged"
-			:class="{ empty: !modelValue && modelValue != 0 }"
+			:class="{
+				empty: modelValue === undefined || modelValue === '',
+			}"
 			:required="required"
 			:pattern="pattern"
 		/>

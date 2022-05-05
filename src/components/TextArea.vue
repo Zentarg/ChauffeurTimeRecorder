@@ -86,6 +86,7 @@ export default defineComponent({
 		background-color: var(--color-background-mute);
 		color: var(--color-heading);
 		padding-left: 75px;
+		min-width: 20ch;
 	}
 	.char-count {
 		position: absolute;

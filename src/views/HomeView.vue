@@ -63,6 +63,7 @@ function DeleteSelectedReport() {
 </template>
 
 <style scoped lang="scss">
+@use '../assets/mixins.scss' as m;
 main {
 	padding: var(--general-padding);
 	display: flex;
@@ -80,8 +81,16 @@ main {
 
 		.selector {
 			display: flex;
-			flex-flow: row wrap;
+			flex-flow: column wrap;
 			gap: 1rem;
+
+			& > div {
+				max-width: 100%;
+			}
+
+			@include m.tablet {
+				flex-flow: row wrap;
+			}
 		}
 	}
 }

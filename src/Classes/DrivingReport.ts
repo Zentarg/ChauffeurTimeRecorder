@@ -11,6 +11,8 @@ export class DrivingReport {
 	destinationData: DestinationData[];
 	crossings: { [key: string]: Crossing };
 	additionalDetails: string;
+	endTime!: string;
+	endKmCount!: number;
 
 	private _dateString: string;
 

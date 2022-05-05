@@ -22,7 +22,9 @@
 
 
 	//Vars
-	--general-padding: 1.5rem 0.5rem;
+	--general-y-padding: 1.5rem;
+	--general-x-padding: .5rem;
+	--general-padding: var(--general-y-padding) var(--general-x-padding);
 
 }
 
@@ -47,13 +49,14 @@
 		--color-background: var(--vt-c-black);
 		--color-background-soft: var(--vt-c-black-soft);
 		--color-background-mute: var(--vt-c-black-mute);
-
+		
 		--color-border: var(--vt-c-divider-dark-2);
 		--color-border-hover: var(--vt-c-divider-dark-1);
-
+		
 		--color-heading: var(--vt-c-text-dark-1);
 		--color-text: var(--vt-c-text-dark-2);
-		--color-text-hover: var(--vt-c-text-dark-1)
+		--color-text-hover: var(--vt-c-text-dark-1);
+		color-scheme: dark;
 	}
 }
 
@@ -90,6 +93,8 @@ body {
 	color: var(--color-background);
 	font-weight: 700;
 	text-transform: uppercase;
+	text-align: center;
+	user-select: none;
 
 	&.disabled {
 		background: var(--color-border-hover);

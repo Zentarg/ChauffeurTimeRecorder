@@ -6,6 +6,7 @@ import InputField from './InputField.vue';
 import IconDelete from './icons/IconDelete.vue';
 import { Crossing } from '@/Classes/Crossing';
 import TextArea from './TextArea.vue';
+import Checkbox from './Checkbox.vue';
 
 export default defineComponent({
 	props: {
@@ -18,6 +19,7 @@ export default defineComponent({
 	setup() {
 		return {
 			destinationDataIdCounter: 0,
+			printWithBackground: ref(false),
 		};
 	},
 	methods: {
@@ -43,6 +45,10 @@ export default defineComponent({
 						this.report.destinationData.length - 1
 					].endTime = data.startTime;
 				}
+				this.report.endTime =
+					this.report.destinationData[
+						this.report.destinationData.length - 1
+					].endTime;
 			}
 
 			this.report.destinationData.push(data);
@@ -59,6 +65,19 @@ export default defineComponent({
 				this.report.destinationData[
 					this.report.destinationData.length - 1
 				].endTime = this.GetCurrentTime();
+				this.report.endTime =
+					this.report.destinationData[
+						this.report.destinationData.length - 1
+					].endTime;
+				console.log(
+					this.report.destinationData[
+						this.report.destinationData.length - 1
+					].kmCount
+				);
+				this.report.endKmCount =
+					this.report.destinationData[
+						this.report.destinationData.length - 1
+					].kmCount;
 			}
 		},
 		AddCrossing(crossing: String, type: String) {
@@ -88,7 +107,7 @@ export default defineComponent({
 			return true;
 		},
 	},
-	components: { InputField, IconDelete, TextArea },
+	components: { InputField, IconDelete, TextArea, Checkbox },
 	mounted() {
 		this.AddDestinationDataRow();
 	},
@@ -180,7 +199,7 @@ export default defineComponent({
 					</div>
 				</div>
 			</div>
-			<div class="buttons">
+			<div class="data-list-overall">
 				<div
 					class="btn start-btn"
 					:class="{ disabled: !CanAddMoreRows }"
@@ -195,46 +214,54 @@ export default defineComponent({
 				>
 					Slut destination
 				</div>
+				<InputField
+					type="text"
+					v-model="report.endTime"
+					label="Sluttidspunkt kl."
+				></InputField>
+				<InputField
+					type="number"
+					v-model="report.endKmCount"
+					label="Sluttidspunkt km-tæller"
+				></InputField>
 			</div>
 		</div>
 		<div class="crossings details">
 			<h2>Overfarter</h2>
-			<p>
-				Tryk på knappen nedenfor for hver gang du tager en overfart (Som
-				solo, med trailer, eller med modul)
-			</p>
-			<div
-				class="crossing"
-				v-for="(crossing, key) in report.crossings"
-				:class="key"
-			>
-				<legend>
-					{{
-						key.toString().charAt(0).toUpperCase() +
-						key.toString().slice(1)
-					}}
-				</legend>
+			<div class="crossings-list">
 				<div
-					class="crossing-input-container"
-					v-for="(crossingType, crossingTypeKey) in crossing"
+					class="crossing"
+					v-for="(crossing, key) in report.crossings"
+					:class="key"
 				>
-					<InputField
-						type="number"
-						v-model="report.crossings[key][crossingTypeKey]"
-						:label="crossingTypeKey"
-					></InputField>
-					<div class="crossing-btn-container">
-						<div
-							class="btn"
-							@click="AddCrossing(key, crossingTypeKey)"
-						>
-							+1
-						</div>
-						<div
-							class="btn"
-							@click="RemoveCrossing(key, crossingTypeKey)"
-						>
-							-1
+					<legend>
+						{{
+							key.toString().charAt(0).toUpperCase() +
+							key.toString().slice(1)
+						}}
+					</legend>
+					<div
+						class="crossing-input-container"
+						v-for="(crossingType, crossingTypeKey) in crossing"
+					>
+						<InputField
+							type="number"
+							v-model="report.crossings[key][crossingTypeKey]"
+							:label="crossingTypeKey"
+						></InputField>
+						<div class="crossing-btn-container">
+							<div
+								class="btn"
+								@click="AddCrossing(key, crossingTypeKey)"
+							>
+								+1
+							</div>
+							<div
+								class="btn"
+								@click="RemoveCrossing(key, crossingTypeKey)"
+							>
+								-1
+							</div>
 						</div>
 					</div>
 				</div>
@@ -248,27 +275,53 @@ export default defineComponent({
 				v-model="report.additionalDetails"
 			></TextArea>
 		</div>
+		<div class="print">
+			<Checkbox
+				v-model="printWithBackground"
+				label="Print med baggrund"
+				name="printWithBackground"
+			></Checkbox>
+			<div class="btn print-btn">Print</div>
+		</div>
 	</div>
 </template>
 
 <style scoped lang="scss">
+@use '../assets/mixins.scss' as m;
 .report {
 	display: flex;
 	gap: 1.5rem;
 	flex-direction: column;
-	align-items: baseline;
 	.details {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
 		align-items: baseline;
 		color: var(--color-heading);
+
+		@include m.mobile {
+			.inputs {
+				width: 100%;
+				padding: 0 var(--general-x-padding);
+				.input-container {
+					width: calc(100% - 4rem);
+				}
+			}
+		}
 	}
 
-	.buttons {
+	.data-list-overall {
 		display: flex;
-		flex-direction: row;
-		gap: 1rem;
+		flex-flow: row wrap;
+		gap: 2rem;
+
+		@include m.mobile {
+			justify-content: center;
+		}
+
+		div {
+			min-width: 200px;
+		}
 	}
 
 	.report-general {
@@ -324,33 +377,52 @@ export default defineComponent({
 		flex-direction: column;
 		gap: 1rem;
 
-		.crossing {
+		.crossings-list {
 			display: flex;
 			flex-direction: row;
-			align-items: center;
+			flex-wrap: wrap;
 			gap: 1rem;
-			legend {
-				width: 9ch;
+			@include m.mobile {
+				justify-content: center;
 			}
-			border-bottom: 2px solid var(--color-border);
-			padding: 1rem 0;
 
-			.crossing-input-container {
+			@include m.tablet {
+				flex-direction: column;
+			}
+
+			.crossing {
 				display: flex;
 				flex-direction: column;
-				gap: 0.5rem;
-				.input-container {
-					min-width: 150px;
-					width: 150px;
+				align-items: center;
+				gap: 2rem;
+				legend {
+					width: 9ch;
 				}
-				.crossing-btn-container {
-					display: flex;
-					width: 100%;
-					gap: 0.5rem;
+				border-bottom: 2px solid var(--color-border);
+				padding: 1rem 0;
 
-					.btn {
-						flex: 1 1 50%;
-						text-align: center;
+				@include m.tablet {
+					flex-direction: row;
+					gap: 1rem;
+				}
+
+				.crossing-input-container {
+					display: flex;
+					flex-direction: column;
+					gap: 0.5rem;
+					.input-container {
+						min-width: 150px;
+						width: 150px;
+					}
+					.crossing-btn-container {
+						display: flex;
+						width: 100%;
+						gap: 0.5rem;
+
+						.btn {
+							flex: 1 1 50%;
+							text-align: center;
+						}
 					}
 				}
 			}
@@ -360,8 +432,22 @@ export default defineComponent({
 	.extra-details {
 		.text-area {
 			max-width: calc(100vw - 7rem);
-			min-width: 400px;
-			height: 10em;
+			min-height: 5em;
+			min-width: 60ch;
+			@include m.mobile {
+				align-self: center;
+				min-width: 80%;
+			}
+		}
+	}
+
+	.print {
+		display: flex;
+		gap: 1rem;
+		input {
+			padding: 2rem;
+		}
+		.print-btn {
 		}
 	}
 }
