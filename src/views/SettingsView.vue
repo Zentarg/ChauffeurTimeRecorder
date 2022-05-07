@@ -1,17 +1,23 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Settings from '../components/Settings.vue';
+</script>
 
 <template>
-	<div class="settings">
-		<h1>This is a settings page</h1>
-	</div>
+	<main>
+		<h1 class="headline">Indstillinger</h1>
+		<Settings></Settings>
+	</main>
 </template>
 
-<style>
-@media (min-width: 1024px) {
-	.about {
-		min-height: 100vh;
-		display: flex;
-		align-items: center;
+<style scoped lang="scss">
+main {
+	padding: var(--general-padding);
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+
+	.headline {
+		line-height: 1em;
 	}
 }
 </style>

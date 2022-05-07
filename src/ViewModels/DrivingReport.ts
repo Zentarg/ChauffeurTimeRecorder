@@ -5,7 +5,8 @@ export class DrivingReport {
 	id: number;
 	name!: string;
 	carRegNumber!: string;
-	date: Date;
+	date: string;
+	fullDate: Date;
 	salaryNumber!: string;
 	maxDataCount!: number;
 	destinationData: DestinationData[];
@@ -14,24 +15,22 @@ export class DrivingReport {
 	endTime!: string;
 	endKmCount!: number;
 
-	private _dateString: string;
-
 	constructor(_id: number, _maxDataCount: number) {
 		this.id = _id;
-		this.date = new Date();
+		this.date = new Date().toISOString().split('T')[0];
+		this.fullDate = new Date(this.date);
 		this.maxDataCount = _maxDataCount;
 		this.destinationData = [];
-		this._dateString = this.date.toISOString().split('T')[0];
 		this.crossings = {};
 		this.additionalDetails = '';
 	}
 
 	get dateString(): string {
-		return this.date.toISOString().split('T')[0];
+		return this.date;
 	}
 
 	set dateString(value: string) {
-		this._dateString = value;
-		this.date = new Date(value);
+		this.date = value;
+		this.fullDate = new Date(value);
 	}
 }

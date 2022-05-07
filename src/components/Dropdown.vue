@@ -35,11 +35,6 @@ export default defineComponent({
 					return this.modelValue[this.textSelector];
 		},
 	},
-	watch: {
-		modelValue(v, oldV) {
-			console.log(v);
-		},
-	},
 });
 </script>
 

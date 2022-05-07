@@ -1,7 +1,35 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import { RouterLink, RouterView } from 'vue-router';
 import IconCog from './components/icons/IconCog.vue';
 import IconNote from './components/icons/iconNote.vue';
+import { useDataStore } from './stores/data';
+import { useSettingsStore } from './stores/settings';
+
+onMounted(() => {
+	let settings = useSettingsStore();
+	let data = useDataStore();
+
+	if (localStorage.getItem('settings')) {
+		settings.$state = JSON.parse(localStorage.getItem('settings'));
+	}
+	if (localStorage.getItem('data')) {
+		const json = JSON.parse(localStorage.getItem('data'));
+		json.reports.sort((a, b) => {
+			return a.id - b.id;
+		});
+		data.$state = json;
+		if (data.reportCount > 0)
+			data.reportIdCounter =
+				parseInt(data.reports[data.reportCount - 1].id) + 1;
+	}
+	settings.$subscribe((mutation, state) => {
+		localStorage.setItem('settings', JSON.stringify(state));
+	});
+	data.$subscribe((mutation, state) => {
+		localStorage.setItem('data', JSON.stringify(state));
+	});
+});
 </script>
 
 <template>
@@ -66,8 +94,7 @@ import IconNote from './components/icons/iconNote.vue';
 	}
 
 	.router-view {
-		// position: absolute;
-		// left: 4rem;
+		width: 100%;
 	}
 }
 </style>
