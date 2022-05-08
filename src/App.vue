@@ -19,9 +19,6 @@ onMounted(() => {
 			return a.id - b.id;
 		});
 		data.$state = json;
-		if (data.reportCount > 0)
-			data.reportIdCounter =
-				parseInt(data.reports[data.reportCount - 1].id) + 1;
 	}
 	settings.$subscribe((mutation, state) => {
 		localStorage.setItem('settings', JSON.stringify(state));

@@ -26,7 +26,7 @@ function AddReport() {
 				<Dropdown
 					v-model="data.selectedReport"
 					:options="data.reports"
-					text-selector="id"
+					:text-selectors="['date', 'reportNumber']"
 					label="Vælg kørselsrapport"
 				></Dropdown>
 				<div class="btn" @click="AddReport">Ny rapport</div>

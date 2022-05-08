@@ -12,7 +12,6 @@ export default defineComponent({
 	},
 	methods: {
 		InputChanged(event) {
-			console.log(event.target.checked);
 			this.$emit('update:modelValue', event.target.checked);
 		},
 	},

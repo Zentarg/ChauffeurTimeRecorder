@@ -7,19 +7,19 @@ export const useDataStore = defineStore({
 	state: () => ({
 		reports: [] as DrivingReport[],
 		selectedReport: undefined as unknown as DrivingReport,
-		reportIdCounter: 307241,
+		newReportId: 1,
 	}),
 	getters: {
 		reportCount: (state) => state.reports.length,
 	},
 	actions: {
 		AddReport() {
-			let newReport = new DrivingReport(this.reportIdCounter, 12);
+			let newReport = new DrivingReport(this.newReportId, 12);
 			newReport.crossings['storebælt'] = new Crossing();
 			newReport.crossings['øresund'] = new Crossing();
 			newReport.crossings['færge'] = new Crossing();
 			const index = this.reports.push(newReport) - 1;
-			this.reportIdCounter++;
+			this.newReportId++;
 			this.selectedReport = this.reports[index];
 		},
 		DeleteSelectedReport() {

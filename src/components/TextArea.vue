@@ -81,7 +81,6 @@ export default defineComponent({
 		height: 100%;
 		max-width: 100%;
 		min-height: 5em;
-		text-transform: uppercase;
 		font-weight: 400;
 		background-color: var(--color-background-mute);
 		color: var(--color-heading);

@@ -8,8 +8,8 @@ export default defineComponent({
 			type: Array,
 			required: true,
 		},
-		textSelector: {
-			type: String,
+		textSelectors: {
+			type: Array,
 			required: true,
 		},
 		label: {
@@ -18,21 +18,37 @@ export default defineComponent({
 	},
 	methods: {
 		InputChanged(event) {
-			console.log(
-				event.target.value,
-				this.options.find((o) => o.id == event.target.value)
-			);
 			this.$emit(
 				'update:modelValue',
 				this.options.find((o) => o.id == event.target.value)
 			);
 		},
-	},
-	computed: {
-		value() {
-			if (this.modelValue)
-				if (this.textSelector in this.modelValue)
-					return this.modelValue[this.textSelector];
+		GetOptionLabel(option) {
+			let string = '';
+			let count = 0;
+			for (const key of this.textSelectors) {
+				if (key in option) {
+					let value = option[key];
+					if (key == 'date') {
+						let date = option[key];
+						if (typeof date == 'string')
+							date = new Date(option[key]);
+						let day, month, year;
+						day = date.getDate();
+						month = date.getMonth() + 1;
+						year = date.getFullYear();
+						if (day < 10) day = '0' + day;
+						if (month < 10) month = '0' + month;
+						date = `${day}/${month}-${year}`;
+						value = date;
+					}
+					if (count < this.textSelectors.length - 1)
+						string += `${value} - `;
+					else string += value;
+					count++;
+				}
+			}
+			return string;
 		},
 	},
 });
@@ -42,11 +58,11 @@ export default defineComponent({
 	<div class="input-container">
 		<select
 			:class="{ empty: !modelValue }"
-			:value="value"
+			:value="modelValue.id"
 			@input="InputChanged"
 		>
-			<option v-for="option in options" :value="option[textSelector]">
-				{{ option[textSelector] }}
+			<option v-for="option in options" :value="option.id">
+				{{ GetOptionLabel(option) }}
 			</option>
 		</select>
 		<span class="top-label">{{ label }}</span>
@@ -66,7 +82,6 @@ export default defineComponent({
 		font-size: 1rem;
 		width: 100%;
 		height: 100%;
-		text-transform: uppercase;
 		font-weight: 500;
 		background-color: var(--color-background-mute);
 		color: var(--color-heading);

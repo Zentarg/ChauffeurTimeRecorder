@@ -3,6 +3,7 @@ import type { DestinationData } from './DestinationData';
 
 export class DrivingReport {
 	id: number;
+	reportNumber!: number;
 	name!: string;
 	carRegNumber!: string;
 	date: string;
@@ -23,14 +24,5 @@ export class DrivingReport {
 		this.destinationData = [];
 		this.crossings = {};
 		this.additionalDetails = '';
-	}
-
-	get dateString(): string {
-		return this.date;
-	}
-
-	set dateString(value: string) {
-		this.date = value;
-		this.fullDate = new Date(value);
 	}
 }
