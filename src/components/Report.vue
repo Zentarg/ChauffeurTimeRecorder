@@ -89,19 +89,6 @@ export default defineComponent({
 		Print() {
 			this.$refs.print.Print();
 		},
-		FormatDate(date: Date) {
-			if (!date) return;
-			if (typeof date == 'string') {
-				date = new Date(date);
-			}
-			let day, month, year;
-			day = date.getDate();
-			month = date.getMonth();
-			year = date.getFullYear();
-			if (day > 10) day = '0' + day;
-			if (month > 10) month = '0' + month;
-			return `${day}/${month}-${year}`;
-		},
 	},
 	computed: {
 		CanAddMoreRows() {
@@ -121,6 +108,20 @@ export default defineComponent({
 					].endTime != undefined
 				);
 			return true;
+		},
+		FormattedDate() {
+			if (!this.report) return;
+			let date = this.report.date;
+			if (typeof date == 'string') {
+				date = new Date(date);
+			}
+			let day, month, year;
+			day = date.getDate();
+			month = date.getMonth() + 1;
+			year = date.getFullYear();
+			if (day < 10) day = '0' + day;
+			if (month < 10) month = '0' + month;
+			return `${day}/${month}-${year}`;
 		},
 		PrintCss() {
 			if (this.printWithBackground) {
@@ -324,7 +325,7 @@ export default defineComponent({
 			<span class="report">{{ report.id }}</span>
 			<span class="name">{{ report.name }}</span>
 			<span class="car-reg-number">{{ report.carRegNumber }}</span>
-			<span class="date">{{ FormatDate(report.fullDate) }}</span>
+			<span class="date">{{ FormattedDate }}</span>
 			<span class="salary-number">{{ report.salaryNumber }}</span>
 			<div class="destination-details-list">
 				<div
