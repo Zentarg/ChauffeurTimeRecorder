@@ -21,6 +21,10 @@ export default defineComponent({
 			type: String,
 			default: '',
 		},
+		maxLength: {
+			type: String,
+			default: ''
+		}
 	},
 	methods: {
 		InputChanged(event) {
@@ -43,6 +47,7 @@ export default defineComponent({
 			}"
 			:required="required"
 			:pattern="pattern"
+			:maxlength="maxLength"
 		/>
 		<span class="top-label">{{ label }}</span>
 	</div>

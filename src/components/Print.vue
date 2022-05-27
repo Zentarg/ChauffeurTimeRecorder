@@ -22,16 +22,29 @@ export default defineComponent({
 	},
 	methods: {
 		Print() {
+			let prevTitle = document.title;
+			let currentDate = new Date();
+			let day, month, year;
+			day = currentDate.getDate();
+			month = currentDate.getMonth() + 1;
+			year = currentDate.getFullYear().toString().slice(2, 4);
+			if (day < 10) day = '0' + day;
+			if (month < 10) month = '0' + month;
+			document.title = `${day}${month}${year}`;
+
 			let style = document.createElement('style');
 			style.textContent = this.printStyle;
+			let title = document.createElement('title');
+			title.textContent = "test";
 			this.$refs.iframe.contentWindow.document.head.innerHTML = '';
 			this.$refs.iframe.contentWindow.document.body.innerHTML = '';
 			this.$refs.iframe.contentWindow.document.head.appendChild(style);
 			this.$refs.iframe.contentWindow.document.body.appendChild(
 				this.$refs.print.cloneNode(true)
 			);
-
 			this.$refs.iframe.contentWindow?.print();
+			
+			document.title = prevTitle;
 		},
 	},
 });

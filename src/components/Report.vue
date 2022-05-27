@@ -112,9 +112,9 @@ export default defineComponent({
 		},
 		PrintCss() {
 			if (this.printWithBackground) {
-				return '@page {margin: 0;size: A4;}.print-container{position:absolute;top:0;left:0;width:21cm;height:29.7cm}.background-image{position:absolute;left:0;top:0;width:21cm;height:29.7cm}span{color:#000;font-weight:500;font-size:11pt;line-height:19.8pt;z-index:2}.report{position:absolute;top:3cm;right:1.3cm;font-size:20pt;text-align:right}.name{position:absolute;top:4.55cm;left:2.3cm;width:9.4cm}.car-reg-number{position:absolute;top:5.25cm;left:3cm;width:8.7cm}.date{position:absolute;top:4.55cm;left:13cm;width:6.6cm}.salary-number{position:absolute;top:5.25cm;left:13cm;width:6.6cm}.destination-details-list{display:flex;flex-direction:column;position:absolute;top:7.2cm;left:1.33cm}.destination-details-row{display:grid;grid-template-columns:2.15cm 4.18cm 1.42cm 1.42cm 1.93cm 1.85cm 1.85cm}.destination-details-row span{padding-left:.1cm}.end-time,.km-count,.start-time,.trip-number{text-align:center;padding:0!important}.final-end-time{position:absolute;top:15.75cm;left:9.1cm;width:1.4cm;text-align:center}.final-km-count{position:absolute;top:15.75cm;left:10.5cm;width:1.9cm;text-align:center}.crossings{display:flex;flex-direction:column;position:absolute;top:18cm;left:7.8cm}.crossing{display:grid;grid-template-columns:3.8cm 3.8cm 3.8cm;gap:.2cm}.crossing span{width:100%;text-align:center}.additional-details{position:absolute;top:25.1cm;left:1.45cm;width:18.1cm}.additional-details span{line-height:11pt;font-size:9pt;padding-left:4.5cm}';
+				return '@page {margin: 0;size: A4;}.print-container{position:absolute;top:0;left:0;width:21cm;height:29.7cm}.background-image{position:absolute;left:0;top:0;width:21cm;height:29.7cm}span{color:#000;font-weight:500;font-size:11pt;line-height:19.8pt;z-index:2}.report{position:absolute;top:3cm;right:1.3cm;font-size:20pt;text-align:right}.name{position:absolute;top:4.55cm;left:3cm;width:9.4cm}.car-reg-number{position:absolute;top:5.25cm;left:3cm;width:8.7cm}.date{position:absolute;top:4.55cm;left:13cm;width:6.6cm}.salary-number{position:absolute;top:5.25cm;left:13cm;width:6.6cm}.destination-details-list{display:flex;flex-direction:column;position:absolute;top:7.2cm;left:1.33cm}.destination-details-row{display:grid;grid-template-columns:2.15cm 4.18cm 1.42cm 1.42cm 1.93cm 1.85cm 1.85cm}.destination-details-row span{padding-left:.1cm}.end-time,.km-count,.start-time,.trip-number{text-align:center;padding:0!important}.final-end-time{position:absolute;top:15.75cm;left:9.1cm;width:1.4cm;text-align:center}.final-km-count{position:absolute;top:15.75cm;left:10.5cm;width:1.9cm;text-align:center}.crossings{display:flex;flex-direction:column;position:absolute;top:18cm;left:7.8cm}.seafareCrossingName{position:absolute;left:-5.4cm;top:1.4cm;}.crossing{display:grid;grid-template-columns:3.8cm 3.8cm 3.8cm;gap:.2cm}.crossing span{width:100%;text-align:center}.additional-details{position:absolute;top:25.5cm;left:1.45cm;width:18.1cm}.additional-details span{white-space: pre-wrap;line-height:11pt;font-size:9pt}';
 			} else {
-				return '@page {margin: 0;size: A4;}.print-container{position:absolute;top:0;left:0;width:21cm;height:29.7cm}.background-image{display: none;}span{color:#000;font-weight:500;font-size:11pt;line-height:19.8pt;z-index:2}.report{display: none}.name{position:absolute;top:4.55cm;left:2.3cm;width:9.4cm}.car-reg-number{position:absolute;top:5.25cm;left:3cm;width:8.7cm}.date{position:absolute;top:4.55cm;left:13cm;width:6.6cm}.salary-number{position:absolute;top:5.25cm;left:13cm;width:6.6cm}.destination-details-list{display:flex;flex-direction:column;position:absolute;top:7.2cm;left:1.33cm}.destination-details-row{display:grid;grid-template-columns:2.15cm 4.18cm 1.42cm 1.42cm 1.93cm 1.85cm 1.85cm}.destination-details-row span{padding-left:.1cm}.end-time,.km-count,.start-time,.trip-number{text-align:center;padding:0!important}.final-end-time{position:absolute;top:15.75cm;left:9.1cm;width:1.4cm;text-align:center}.final-km-count{position:absolute;top:15.75cm;left:10.5cm;width:1.9cm;text-align:center}.crossings{display:flex;flex-direction:column;position:absolute;top:18cm;left:7.8cm}.crossing{display:grid;grid-template-columns:3.8cm 3.8cm 3.8cm;gap:.2cm}.crossing span{width:100%;text-align:center}.additional-details{position:absolute;top:25.1cm;left:1.45cm;width:18.1cm}.additional-details span{line-height:11pt;font-size:9pt;padding-left:4.5cm}';
+				return '@page {margin: 0;size: A4;}.print-container{position:absolute;top:0;left:0;width:21cm;height:29.7cm}.background-image{display: none;}span{color:#000;font-weight:500;font-size:11pt;line-height:19.8pt;z-index:2}.report{display: none}.name{position:absolute;top:4.55cm;left:3cm;width:9.4cm}.car-reg-number{position:absolute;top:5.25cm;left:3cm;width:8.7cm}.date{position:absolute;top:4.55cm;left:13cm;width:6.6cm}.salary-number{position:absolute;top:5.25cm;left:13cm;width:6.6cm}.destination-details-list{display:flex;flex-direction:column;position:absolute;top:7.2cm;left:1.33cm}.destination-details-row{display:grid;grid-template-columns:2.15cm 4.18cm 1.42cm 1.42cm 1.93cm 1.85cm 1.85cm}.destination-details-row span{padding-left:.1cm}.end-time,.km-count,.start-time,.trip-number{text-align:center;padding:0!important}.final-end-time{position:absolute;top:15.75cm;left:9.1cm;width:1.4cm;text-align:center}.final-km-count{position:absolute;top:15.75cm;left:10.5cm;width:1.9cm;text-align:center}.crossings{display:flex;flex-direction:column;position:absolute;top:18cm;left:7.8cm}.seafareCrossingName{position:absolute;left:-5.4cm;top:1.4cm;}.crossing{display:grid;grid-template-columns:3.8cm 3.8cm 3.8cm;gap:.2cm}.crossing span{width:100%;text-align:center}.additional-details{position:absolute;top:25.5cm;left:1.45cm;width:18.1cm}.additional-details span{white-space: pre-wrap;line-height:11pt;font-size:9pt}';
 			}
 		},
 		ReportDate: {
@@ -192,6 +192,7 @@ export default defineComponent({
 							type="text"
 							v-model="data.destination"
 							label="Destination"
+							max-length="21"
 						></InputField>
 						<InputField
 							type="text"
@@ -283,6 +284,13 @@ export default defineComponent({
 							</div>
 						</div>
 					</div>
+					<InputField
+						v-if="key == 'færge'"
+						type="text"
+						v-model="report.seafareCrossingName"
+						label="Færge navn"
+						class="seafareCrossingName"
+					></InputField>
 				</div>
 			</div>
 		</div>
@@ -347,6 +355,7 @@ export default defineComponent({
 						crossing.Modul > 0 ? crossing.Modul : null
 					}}</span>
 				</div>
+				<span class="seafareCrossingName">{{report.seafareCrossingName}}</span>
 			</div>
 			<div class="additional-details">
 				<span>{{ report.additionalDetails }}</span>
@@ -598,6 +607,10 @@ export default defineComponent({
 				@include m.tablet {
 					flex-direction: row;
 					gap: 1rem;
+				}
+
+				.seafareCrossingName {
+					align-self: flex-start;
 				}
 
 				.crossing-input-container {

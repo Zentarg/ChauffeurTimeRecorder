@@ -15,6 +15,7 @@ export class DrivingReport {
 	additionalDetails: string;
 	endTime!: string;
 	endKmCount!: number;
+	seafareCrossingName!: string;
 
 	constructor(_id: number, _maxDataCount: number) {
 		this.id = _id;
