@@ -58,7 +58,7 @@ export default defineComponent({
 	<div class="input-container">
 		<select
 			:class="{ empty: !modelValue }"
-			:value="modelValue.id"
+			:value="modelValue?.id"
 			@input="InputChanged"
 		>
 			<option v-for="option in options" :value="option.id">
