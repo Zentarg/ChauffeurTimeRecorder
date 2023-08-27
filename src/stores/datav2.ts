@@ -15,7 +15,7 @@ export const useDataV2Store = defineStore({
 	},
 	actions: {
 		AddReport() {
-			let newReport = new DrivingReportV2(this.newReportId, 14);
+			let newReport = new DrivingReportV2(this.newReportId, 15);
 			const index = this.reports.push(newReport) - 1;
 			this.newReportId++;
 			this.selectedReport = this.reports[index];

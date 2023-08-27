@@ -210,17 +210,6 @@ export default defineComponent({
 						padding: 0 !important;
 					}
 
-					.end-time {
-						position: relative;
-					}
-
-					.end-time span {
-						position: absolute;
-						top: .65cm;
-						left: 0;
-						right: 0;
-					}
-
 					.route, .work-type {
 						text-align: left;
 						padding: 0 0 0 .1cm !important;
@@ -298,17 +287,6 @@ export default defineComponent({
 					.route-date {
 						text-align: center;
 						padding: 0 !important;
-					}
-
-					.end-time {
-						position: relative;
-					}
-
-					.end-time span {
-						position: absolute;
-						top: .65cm;
-						left: 0;
-						right: 0;
 					}
 
 					.route, .work-type {
@@ -397,12 +375,12 @@ export default defineComponent({
 						<InputField
 							type="text"
 							v-model="data.startTime"
-							label="Start kl."
+							label="Ank. kl."
 						></InputField>
 						<InputField
 							type="text"
 							v-model="data.endTime"
-							label="Slut kl."
+							label="Afg kl."
 						></InputField>
 						<InputField
 							type="text"
@@ -429,10 +407,10 @@ export default defineComponent({
 					:class="{ disabled: !CanAddMoreRows }"
 					@click="StartDestination"
 				>
-					Start destination
+					Ankomst destination
 				</div>
 				<div class="btn end-btn" @click="EndDestination">
-					Slut destination
+					Afgang destination
 				</div>
 			</div>
 		</div>
@@ -466,8 +444,8 @@ export default defineComponent({
 					<span class="route-date">{{
 						FormatDate(destination.date)
 					}}</span>
-					<span class="end-time"><span>{{ destination.endTime }}</span></span>
 					<span class="start-time">{{ destination.startTime }}</span>
+					<span class="end-time">{{ destination.endTime }}</span>
 					<span class="hours"></span>
 					<span class="km-count">{{ destination.kmCount }}</span>
 					<span class="work-type">{{
@@ -560,17 +538,6 @@ export default defineComponent({
 	.route-date{
 		text-align: center;
 		padding: 0 !important;
-	}
-
-	.end-time {
-		position: relative;
-	}
-
-	.end-time span {
-		position: absolute;
-		top: .65cm;
-		left: 0;
-		right: 0;
 	}
 
 	.route, .work-type {
