@@ -36,7 +36,7 @@ function AddV2Report() {
 <template>
 	<main>
 		<Tabs :tabs="homeData.tabs" v-model="homeData.selectedTab"></Tabs>
-		<template v-if="homeData.selectedTab.Key == 'v1'">
+		<template v-if="homeData.selectedTab?.Key == 'v1'">
 			<div class="report-selector">
 	
 				<h1 class="headline">Kørsels Rapport</h1>
@@ -61,7 +61,7 @@ function AddV2Report() {
 				<h2>Vælg en kørselsrapport eller lav en ny.</h2>
 			</div>
 		</template>
-		<template v-else-if="homeData.selectedTab.Key == 'v2'">
+		<template v-else-if="homeData.selectedTab?.Key == 'v2'">
 			<div class="report-selector">
 	
 				<h1 class="headline">Kørsels Rapport</h1>
