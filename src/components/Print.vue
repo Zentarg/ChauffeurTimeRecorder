@@ -60,7 +60,7 @@ export default defineComponent({
 	background: grey;
 	color: white;
 	-webkit-print-color-adjust: exact;
-	display: none;
+	// display: none;
 }
 iframe {
 	display: none;

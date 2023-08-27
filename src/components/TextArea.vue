@@ -61,12 +61,12 @@ export default defineComponent({
 		/>
 		<div class="char-count" :style="{ CharCountStyle }">
 			<ProgressRing
-				:current="modelValue.toString().length"
+				:current="modelValue?.toString().length ?? '0'"
 				:max="maxChars"
 				:radius="15"
 				:stroke="2"
 			></ProgressRing>
-			{{ modelValue.toString().length }}/{{ maxChars }}
+			{{ modelValue?.toString().length ?? '0' }}/{{ maxChars }}
 		</div>
 	</div>
 </template>

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { useSettingsStore } from '@/stores/settings';
+import { useSettingsV2Store } from '@/stores/settingsv2';
 import { defineComponent } from 'vue';
 
 import InputField from './InputField.vue';
@@ -8,7 +8,7 @@ export default defineComponent({
 	props: {},
 	setup() {
 		return {
-			settings: useSettingsStore(),
+			settings: useSettingsV2Store(),
 		};
 	},
 	methods: {},
@@ -19,7 +19,7 @@ export default defineComponent({
 
 <template>
 	<div class="settings">
-		<h2>Generelle indstillinger V1:</h2>
+		<h2>Generelle indstillinger V2:</h2>
 		<div class="personal-details details">
 			<InputField
 				type="string"

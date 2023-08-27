@@ -4,14 +4,23 @@ import { RouterLink, RouterView } from 'vue-router';
 import IconCog from './components/icons/IconCog.vue';
 import IconNote from './components/icons/iconNote.vue';
 import { useDataStore } from './stores/data';
+import { useDataV2Store } from './stores/datav2';
+import { useHomeDataStore } from './stores/homeData';
 import { useSettingsStore } from './stores/settings';
+import { useSettingsV2Store } from './stores/settingsv2';
 
 onMounted(() => {
 	let settings = useSettingsStore();
+	let settingsv2 = useSettingsV2Store();
 	let data = useDataStore();
+	let datav2 = useDataV2Store();
+	let homeData = useHomeDataStore();
 
 	if (localStorage.getItem('settings')) {
 		settings.$state = JSON.parse(localStorage.getItem('settings'));
+	}
+	if (localStorage.getItem('settingsv2')) {
+		settingsv2.$state = JSON.parse(localStorage.getItem('settings'));
 	}
 	if (localStorage.getItem('data')) {
 		const json = JSON.parse(localStorage.getItem('data'));
@@ -20,11 +29,27 @@ onMounted(() => {
 		});
 		data.$state = json;
 	}
+	if (localStorage.getItem('datav2')) {
+		const json = JSON.parse(localStorage.getItem('datav2'));
+		json.reports.sort((a, b) => {
+			return a.id - b.id;
+		});
+		datav2.$state = json;
+	}
+	if (localStorage.getItem('homeData')) {
+		homeData.$state = JSON.parse(localStorage.getItem('homeData'));
+	}
 	settings.$subscribe((mutation, state) => {
 		localStorage.setItem('settings', JSON.stringify(state));
 	});
 	data.$subscribe((mutation, state) => {
 		localStorage.setItem('data', JSON.stringify(state));
+	});
+	datav2.$subscribe((mutation, state) => {
+		localStorage.setItem('datav2', JSON.stringify(state));
+	});
+	homeData.$subscribe((mutation, state) => {
+		localStorage.setItem('homeData', JSON.stringify(state));
 	});
 });
 </script>

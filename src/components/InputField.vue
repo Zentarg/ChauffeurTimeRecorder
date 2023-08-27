@@ -71,7 +71,7 @@ export default defineComponent({
 		color: var(--color-heading);
 		border: none;
 
-		&:not(.empty) {
+		&:not(.empty), &[type=date] {
 			& ~ .top-label {
 				transform: translateY(-130%);
 				left: 0;
